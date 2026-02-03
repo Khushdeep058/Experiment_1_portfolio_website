@@ -1,0 +1,558 @@
+/* ===========================
+   CSS Reset & Base Styles
+   =========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===========================
+   CSS Variables
+   =========================== */
+
+:root {
+    --bg-primary: #0a192f;
+    --bg-secondary: #112240;
+    --text-primary: #e6f1ff;
+    --text-secondary: #8892b0;
+    --accent: #5eead4;
+    --accent-dim: rgba(94, 234, 212, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* ===========================
+   Typography & Body
+   =========================== */
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===========================
+   Cursor Spotlight Effect
+   =========================== */
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        rgba(94, 234, 212, 0.08), 
+        transparent 40%
+    );
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.3s;
+}
+
+/* ===========================
+   Layout Container
+   =========================== */
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===========================
+   Skip to Content Link
+   =========================== */
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent);
+    color: var(--bg-primary);
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 100;
+    font-weight: 600;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ===========================
+   Main Layout Grid
+   =========================== */
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 4rem 0;
+}
+
+@media (min-width: 1024px) {
+    .main-layout {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        min-height: 100vh;
+        padding: 0;
+    }
+}
+
+/* ===========================
+   Header Section (Left Column)
+   =========================== */
+
+.header-section {
+    padding: 6rem 0;
+}
+
+@media (min-width: 1024px) {
+    .header-section {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 6rem 0;
+    }
+}
+
+.header-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+.header-content h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.header-content p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 300px;
+    margin-bottom: 2rem;
+}
+
+/* ===========================
+   Navigation
+   =========================== */
+
+.nav-list {
+    list-style: none;
+    margin: 3rem 0;
+}
+
+.nav-item {
+    margin-bottom: 1rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.75rem 0;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-link::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text-primary);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    width: 4rem;
+    background: var(--text-primary);
+}
+
+/* ===========================
+   Social Links
+   =========================== */
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-link {
+    color: var(--text-secondary);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+}
+
+.social-link:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.social-link svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* ===========================
+   Content Section (Right Column)
+   =========================== */
+
+.content-section {
+    padding: 6rem 0;
+}
+
+section {
+    margin-bottom: 8rem;
+    scroll-margin-top: 6rem;
+}
+
+section h2 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg-primary);
+    padding: 1rem 0;
+    z-index: 10;
+}
+
+@media (min-width: 1024px) {
+    section h2 {
+        position: static;
+        padding: 0;
+    }
+}
+
+/* ===========================
+   About Section
+   =========================== */
+
+.about-content p {
+    margin-bottom: 1rem;
+    line-height: 1.75;
+}
+
+.about-content a {
+    color: var(--text-primary);
+    text-decoration: none;
+    position: relative;
+    transition: var(--transition);
+}
+
+.about-content a:hover {
+    color: var(--accent);
+}
+
+/* ===========================
+   Experience, Project, Writing Items
+   =========================== */
+
+.experience-item,
+.project-item,
+.writing-item {
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.experience-item:hover,
+.project-item:hover,
+.writing-item:hover {
+    background: var(--accent-dim);
+    box-shadow: 0 0 0 1px rgba(94, 234, 212, 0.1);
+}
+
+/* ===========================
+   Experience Header & Content
+   =========================== */
+
+.experience-header {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.experience-date {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    padding-top: 0.25rem;
+    min-width: 120px;
+}
+
+.experience-content h3 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.experience-content h3::after {
+    content: '→';
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.experience-item:hover h3::after,
+.project-item:hover h3::after,
+.writing-item:hover h3::after {
+    transform: translateX(5px);
+}
+
+.experience-position {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.experience-description {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* ===========================
+   Tech Stack Tags
+   =========================== */
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tech-tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-radius: 9999px;
+    font-weight: 500;
+}
+
+/* ===========================
+   Projects
+   =========================== */
+
+.project-image {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(94, 234, 212, 0.1);
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.project-link {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: var(--transition);
+}
+
+.project-link:hover {
+    color: var(--accent);
+}
+
+/* ===========================
+   Writing Section
+   =========================== */
+
+.writing-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+}
+
+.writing-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid rgba(94, 234, 212, 0.1);
+}
+
+.writing-year {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.writing-content h3 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.writing-content h3::after {
+    content: '→';
+    transition: var(--transition);
+}
+
+/* ===========================
+   Archive Link
+   =========================== */
+
+.archive-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 2rem;
+    transition: var(--transition);
+}
+
+.archive-link:hover {
+    color: var(--accent);
+}
+
+.archive-link::after {
+    content: '→';
+    transition: var(--transition);
+}
+
+.archive-link:hover::after {
+    transform: translateX(5px);
+}
+
+/* ===========================
+   Footer
+   =========================== */
+
+.footer-text {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(94, 234, 212, 0.1);
+}
+
+.footer-text a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-text a:hover {
+    color: var(--accent);
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+
+@media (max-width: 1023px) {
+    .nav-list {
+        display: none;
+    }
+
+    .header-content h1 {
+        font-size: 2.5rem;
+    }
+
+    section h2 {
+        font-size: 1rem;
+    }
+
+    .experience-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .experience-date {
+        min-width: auto;
+    }
+
+    .writing-item {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .header-content h2 {
+        font-size: 1.125rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+
+    .social-link svg {
+        width: 20px;
+        height: 20px;
+    }
+}
